@@ -24,6 +24,6 @@ test_user_view:
     path: /user/view/{id}
     defaults: { _controller: testBundle:User:view }
 
-  test_user_delete:
+test_user_delete:
     path: /user/delete/{id}
     defaults: { _controller: testBundle:User:delete }
