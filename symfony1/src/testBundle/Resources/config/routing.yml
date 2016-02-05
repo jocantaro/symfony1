@@ -1,0 +1,29 @@
+test_homepage:
+    path:     /tacua
+    defaults: { _controller: testBundle:Default:index }
+
+test_user_index:
+    path: /user/index
+    defaults: { _controller: testBundle:User:index }
+
+test_user_articles:
+    path: /user/page/{page}
+    defaults: { _controller: testBundle:User:articles, page: 1 }
+    requirements:
+      page: \d+
+
+test_user_add:
+    path: /user/add/{id}
+    defaults: { _controller: testBundle:User:index }
+
+test_user_edit:
+    path: /user/edit/{id}
+    defaults: { _controller: testBundle:User:edit }
+
+test_user_view:
+    path: /user/view/{id}
+    defaults: { _controller: testBundle:User:view }
+
+  test_user_delete:
+    path: /user/delete/{id}
+    defaults: { _controller: testBundle:User:delete }
