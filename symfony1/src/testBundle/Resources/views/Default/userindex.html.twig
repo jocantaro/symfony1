@@ -1,3 +1,13 @@
-<h1>Twig de user index</h1>
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ parent() }}
+
+<h1 class="tacua">Twig de user index</h1>
 
 {{ users.0.username }}
+
+    <button class="btn-success">BOTON</button>
+
+{% endblock %}

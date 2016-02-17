@@ -13,8 +13,13 @@ test_user_articles:
       page: \d+
 
 test_user_add:
-    path: /user/add/{id}
-    defaults: { _controller: testBundle:User:index }
+    path: /user/add/
+    defaults: { _controller: testBundle:User:add }
+
+test_user_create:
+    path: /user/create
+    defaults: { _controller: testBundle:User:create }
+    methods: POST
 
 test_user_edit:
     path: /user/edit/{id}
