@@ -3,6 +3,11 @@
 namespace testBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Tests\Extension\Core\Type\SubmitTypeTest;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
+use testBundle\Entity\Director;
+use testBundle\Entity\Pelicula;
 use testBundle\Entity\Users;
 use testBundle\Form\UsersType;
 use testBundle\Entity\Product;
@@ -10,14 +15,49 @@ use testBundle\Entity\Product;
 
 class UserController extends Controller {
 
-    public function indexAction()
+    public function indexAction(Request $request)
+    {
+
+        $director = new Director();
+        $director->setNombre("Nombre 1");
+        $director->setApellido("ape 1");
+
+        $form = $this->createFormBuilder($director)
+            ->add('Nombre', TextType::class)
+            ->add('save', SubmitTypeTest::class, array('label'=>'Create Director'))
+        ->getForm();
+
+
+
+       return $this->render('testBundle:Default:userindex.html.twig', array ('form'=>$form->createView()));
+
+    }
+
+
+    public function testInsertAction()
     {
 
         $em = $this->getDoctrine()->getManager();
 
-
         $users = $em->getRepository('testBundle:Users')->findAll();
 
+        $director = new Director();
+
+        $director->setNombre("Nombre 1");
+
+        $director->setApellido("ape 1");
+
+        $pelicula = new Pelicula();
+
+        $pelicula->setTitulo('Takecua parte 2');
+
+        $pelicula->setDirector($director);
+
+        $em->persist($director);
+
+        $em->persist($pelicula);
+
+        $em->flush();
 
         return $this->render('testBundle:Default:userindex.html.twig', array ('users'=>$users));
     }

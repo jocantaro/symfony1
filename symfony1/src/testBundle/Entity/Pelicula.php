@@ -9,11 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="pelicula")
  * @ORM\Entity(repositoryClass="testBundle\Repository\PeliculaRepository")
- * @ORM\ManyToOne(targetEntity="Director", inversedBy="peliculas")
- * @ORM\JoinColumn(name="director_id", referencedColumnName="id")
  */
 class Pelicula
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Director", inversedBy="pelicula")
+     * @ORM\JoinColumn(name="director_id", referencedColumnName="id")
+     */
+
+    protected $director;
+
     /**
      * @var int
      *
@@ -64,5 +70,28 @@ class Pelicula
     {
         return $this->titulo;
     }
-}
 
+    /**
+     * Set director
+     *
+     * @param \testBundle\Entity\Director $director
+     *
+     * @return Pelicula
+     */
+    public function setDirector(\testBundle\Entity\Director $director = null)
+    {
+        $this->director = $director;
+
+        return $this;
+    }
+
+    /**
+     * Get director
+     *
+     * @return \testBundle\Entity\Director
+     */
+    public function getDirector()
+    {
+        return $this->director;
+    }
+}

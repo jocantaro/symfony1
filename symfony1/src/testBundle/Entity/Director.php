@@ -11,10 +11,15 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="director")
  * @ORM\Entity(repositoryClass="testBundle\Repository\DirectorRepository")
- * @ORM\OneToMany(targetEntity="Pelicula", mappedBy="director")
  */
 class Director
 {
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Pelicula", mappedBy="director")
+     */
+
 
     protected $pelicula;
 
@@ -106,5 +111,38 @@ class Director
     {
         return $this->apellido;
     }
-}
 
+    /**
+     * Add pelicula
+     *
+     * @param \testBundle\Entity\Pelicula $pelicula
+     *
+     * @return Director
+     */
+    public function addPelicula(\testBundle\Entity\Pelicula $pelicula)
+    {
+        $this->pelicula[] = $pelicula;
+
+        return $this;
+    }
+
+    /**
+     * Remove pelicula
+     *
+     * @param \testBundle\Entity\Pelicula $pelicula
+     */
+    public function removePelicula(\testBundle\Entity\Pelicula $pelicula)
+    {
+        $this->pelicula->removeElement($pelicula);
+    }
+
+    /**
+     * Get pelicula
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPelicula()
+    {
+        return $this->pelicula;
+    }
+}
