@@ -3,7 +3,7 @@
 namespace testBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Tests\Extension\Core\Type\SubmitTypeTest;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use testBundle\Entity\Director;
@@ -24,7 +24,7 @@ class UserController extends Controller {
 
         $form = $this->createFormBuilder($director)
             ->add('Nombre', TextType::class)
-            ->add('save', SubmitTypeTest::class, array('label'=>'Create Director'))
+            ->add('save', SubmitType::class, array('label'=>'Create Director'))
         ->getForm();
 
 

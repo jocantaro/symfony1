@@ -6,12 +6,11 @@
 
 <h1 class="tacua">Twig de user index</h1>
 
-{{ users.0.username }}
 
     <button class="btn-success">BOTON</button>
 
-    {#{{ form_start(form) }}#}
-    {#{{ form_widget(form) }}#}
-    {#{{ form_end(form) }}#}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 
 {% endblock %}
