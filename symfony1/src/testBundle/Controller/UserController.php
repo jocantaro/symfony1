@@ -17,19 +17,37 @@ class UserController extends Controller {
 
     public function indexAction(Request $request)
     {
-
-        $director = new Director();
-        $director->setNombre("Nombre 1");
-        $director->setApellido("ape 1");
+       $director = new Director();
 
         $form = $this->createFormBuilder($director)
-            ->add('Nombre', TextType::class)
+            ->add('Nombre', TextType::class, array('required' => false))
+            ->add('Apellido', TextType::class, array('required' => false))
             ->add('save', SubmitType::class, array('label'=>'Create Director'))
         ->getForm();
 
+        $form->handleRequest($request);
 
+        //echo phpinfo();
+        var_dump($form->getErrors());
 
-       return $this->render('testBundle:Default:userindex.html.twig', array ('form'=>$form->createView()));
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            echo phpinfo();
+
+            $repository = $this->getDoctrine()
+                ->getRepository('testBundle:Director');
+
+            $directors = $repository->findAll();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($director);
+            $em->flush();
+            return $this->render('testBundle:Default:userindex.html.twig', array ('form'=>$form->createView()));
+
+        }
+
+        echo "takecua";
+        return $this->render('testBundle:Default:userindex.html.twig', array ('form'=>$form->createView()));
 
     }
 

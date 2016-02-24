@@ -43,10 +43,14 @@ class Director
      * @var string
      *
      * @ORM\Column(name="Nombre", type="string", length=55)
+     *
+     * @Assert\NotBlank()
      */
+
     private $nombre;
 
     /**
+     *
      * @var string
      *
      * @ORM\Column(name="Apellido", type="string", length=100)
